@@ -74,8 +74,11 @@ fb_PP_VRC_4(
     i_xOverrideMode := xSystemOverrideMode_BTS
 );
 
-//Condition to open or close the valve
-fb_PP_VRC_4.iq_stValve.pv_xOPN_SW := (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING);
+/////Forcing Valve to OPEN when PUMP is RUNNING
+//Required by Laser Hall 
+IF (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING)THEN 
+	fb_PP_VRC_4.M_Set_OPN_SW(TRUE); 
+END_IF
 
 (* Transport Tube vavles *)
 // LS1
