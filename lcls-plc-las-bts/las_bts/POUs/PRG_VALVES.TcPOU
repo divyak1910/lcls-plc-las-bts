@@ -3,7 +3,8 @@
   <POU Name="PRG_VALVES" Id="{ba00eb5d-cf41-4398-aa63-3ea5e5b61133}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_VALVES
 VAR
-    Valve_opn_ok : BOOL;
+    Valve_opn_ok : BOOL; 
+	pumpON :BOOL; 
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -65,10 +66,22 @@ fb_VP_VVC_4(
 );
 
 // Turbo Isolation valve - Interlocked with turbo pump operation
+
+// Pump must be running to allow the valve to open
+pumpON := fb_PP_PMF.q_stPump.xAtSpd;
+
+//Roughing Pump function block
 fb_PP_VRC_4(
-    i_xExtILK_OK := TRUE,
+    i_xExtILK_OK := pumpON,
     i_xOverrideMode := xSystemOverrideMode_BTS
 );
+
+//Condition to open or close
+IF (fb_PP_PMF.q_stPump.xAtSpd = TRUE OR fb_PP_PMF.q_stPump.i_xIsRun = TRUE) THEN 
+	fb_PP_VRC_4.iq_stValve.q_xOPN_DO := TRUE; 
+ELSE
+	fb_PP_VRC_4.iq_stValve.q_xOPN_DO :=FALSE; 
+END_IF
 
 (* Transport Tube vavles *)
 // LS1
