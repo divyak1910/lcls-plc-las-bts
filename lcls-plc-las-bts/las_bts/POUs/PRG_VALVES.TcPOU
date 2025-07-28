@@ -68,18 +68,14 @@ fb_VP_VVC_4(
 
 // Turbo Isolation valve - Interlocked with turbo pump operation
 
-// Pump must be running to allow the valve to open
-xPumpRunning := fb_PP_PMF.q_stPump.eState = pumpRUNNING;
-xValveOKToOpen := xPumpRunning;
-
 //Roughing Pump function block
 fb_PP_VRC_4(
-    i_xExtILK_OK := xValveOKToOpen,
+    i_xExtILK_OK := (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING),
     i_xOverrideMode := xSystemOverrideMode_BTS
 );
 
 //Condition to open or close the valve
-fb_PP_VRC_4.iq_stValve.pv_xOPN_SW := (fb_PP_PMF.q_stPump.eState = pumpRUNNING);
+fb_PP_VRC_4.iq_stValve.pv_xOPN_SW := (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING);
 
 (* Transport Tube vavles *)
 // LS1
