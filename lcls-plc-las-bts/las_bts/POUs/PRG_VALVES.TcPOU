@@ -75,9 +75,9 @@ fb_PP_VRC_4(
 );
 
 /////Forcing Valve to OPEN when PUMP is RUNNING
-//Required by Laser Hall 
-IF (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING)THEN 
-	fb_PP_VRC_4.M_Set_OPN_SW(TRUE); 
+//Required by Laser Hall
+IF (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING)THEN
+    fb_PP_VRC_4.M_Set_OPN_SW(TRUE);
 END_IF
 
 (* Transport Tube vavles *)
