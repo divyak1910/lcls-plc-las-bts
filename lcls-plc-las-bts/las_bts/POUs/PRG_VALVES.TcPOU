@@ -70,13 +70,13 @@ fb_VP_VVC_4(
 
 //Roughing Pump function block
 fb_PP_VRC_4(
-    i_xExtILK_OK := (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING),
+    i_xExtILK_OK := (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING) OR (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpSTARTING),
     i_xOverrideMode := xSystemOverrideMode_BTS
 );
 
 /////Forcing Valve to OPEN when PUMP is RUNNING
 //Required by Laser Hall
-IF (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING)THEN
+IF (fb_PP_PMF.q_stPump.eState = E_PumpState.pumpRUNNING or fb_PP_PMF.q_stPump.eState = E_PumpState.pumpSTARTING)THEN
     fb_PP_VRC_4.M_Set_OPN_SW(TRUE);
 END_IF
 

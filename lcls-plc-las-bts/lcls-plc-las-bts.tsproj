@@ -79,7 +79,7 @@
 	<Project ProjectGUID="{1CC01732-1234-43E4-A951-74578F6FE584}" TargetNetId="172.21.160.49.1.1" RelativeTargetNetId="true" RelativeIpAddresses="true" ShowHideConfigurations="#x106">
 		<System>
 			<Licenses>
-				<Target>
+				<Target BkhfOrder="01610315">
 					<ManualSelect>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</ManualSelect>
 					<ManualSelect>{D59230D3-7C55-4138-859C-234C1C6CFDA8}</ManualSelect>
 				</Target>
@@ -1602,6 +1602,7 @@
 				<Link VarA="PlcTask Outputs^GVL_BTS_VAC.fb_PP_VGC.q_xOPN_DO" VarB="Channel 2^Output" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT1^EK1100_02_00^EL2004_02_15">
+				<Link VarA="PlcTask Outputs^GVL_BTS_VAC.fb_PP_VRC_4.q_xOPN_DO" VarB="Channel 2^Output" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^GVL_BTS_VAC.fb_VP_VVC_4.q_xOPN_DO" VarB="Channel 1^Output" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT1^EK1100_02_00^EL3064_02_16">
