@@ -53,7 +53,8 @@ VAR_GLOBAL
     fb_VP_VVC_4 : FB_VVC;
 
     {attribute 'pytmc' 	  :=	' pv: LXLHN:VRC:04 '}
-    {attribute 'TcLinkTo' := 	'.i_xOpnLS			:=	TIIB[EL1004_03_17]^Channel 1^Input;
+    {attribute 'TcLinkTo' := 	'.q_xOPN_DO			:=	TIIB[EL2004_02_15]^Channel 2^Output;
+                                 .i_xOpnLS			:=	TIIB[EL1004_03_17]^Channel 1^Input;
                                  .i_xClsLS			:=	TIIB[EL1004_03_17]^Channel 2^Input'}
     fb_PP_VRC_4 : FB_VRC; // Turbo Isolation Valve
 

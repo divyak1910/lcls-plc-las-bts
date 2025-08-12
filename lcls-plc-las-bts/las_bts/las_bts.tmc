@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{9F412B90-5FAD-74AD-4A6C-F564E1D91389}" GeneratedBy="TwinCAT XAE Plc">
+<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{5038281D-37DF-07FD-B4CB-2B59260111C9}" GeneratedBy="TwinCAT XAE Plc">
   <DataTypes>
     <DataType>
       <Name Namespace="Tc2_SerialCom">ComBuffer</Name>
@@ -1082,6 +1082,9 @@
       <Name Namespace="LCLS_General.Tc3_EventLogger">I_ArgumentsChangeListener</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>OnArgumentsChanged</Name>
+      </Method>
     </DataType>
     <DataType>
       <Name GUID="{C3BF7AA5-0A83-4CFA-9A7A-04C1DFD0E5DD}" TcBaseType="true" CName="ITcAsyncResult*">ITcAsyncResult</Name>
@@ -1507,6 +1510,71 @@
       <Name Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name RpcEnable="plc">__getguid</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000021}" RpcDirection="out">GUID</ReturnType>
+        <ReturnBitSize>128</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getipData</Name>
+        <ReturnType GUID="{F7BF6767-548B-493C-899B-06A477976F11}" RpcDirection="out">ITcSourceInfo</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>conditionalshow</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getnId</Name>
+        <ReturnType RpcDirection="out">UDINT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getsName</Name>
+        <ReturnType RpcDirection="out">STRING(255)</ReturnType>
+        <ReturnBitSize>2048</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>EqualsTo</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>ipOther</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name GUID="{F00C83AD-DEC8-486E-AE99-5E0A75C26DE0}" TcBaseType="true" CName="TcEventEntry">TcEventEntry</Name>
@@ -1534,11 +1602,289 @@
       <Name Namespace="LCLS_General.Tc3_EventLogger">I_TcEventBase</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name RpcEnable="plc">__geteSeverity</Name>
+        <ReturnType GUID="{B57D3F4A-0836-49B0-81C3-BED5F4817EC9}" RpcDirection="out">TcEventSeverity</ReturnType>
+        <ReturnBitSize>16</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getEventClass</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000021}" RpcDirection="out">GUID</ReturnType>
+        <ReturnBitSize>128</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getipSourceInfo</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger" RpcDirection="out">I_TcSourceInfo</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getnEventId</Name>
+        <ReturnType RpcDirection="out">UDINT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getsEventClassName</Name>
+        <ReturnType RpcDirection="out">STRING(255)</ReturnType>
+        <ReturnBitSize>2048</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getsEventText</Name>
+        <ReturnType RpcDirection="out">STRING(255)</ReturnType>
+        <ReturnBitSize>2048</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>monitoring</Name>
+            <Value>call</Value>
+          </Property>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getstEventEntry</Name>
+        <ReturnType GUID="{F00C83AD-DEC8-486E-AE99-5E0A75C26DE0}" RpcDirection="out">TcEventEntry</ReturnType>
+        <ReturnBitSize>192</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>EqualsTo</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>ipOther</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger">I_TcEventBase</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>EqualsToEventClass</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>OtherEventClass</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+          <BitSize>128</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>EqualsToEventEntry</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>OtherEventClass</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+          <BitSize>128</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>nOtherEventID</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>eOtherSeverity</Name>
+          <Type GUID="{B57D3F4A-0836-49B0-81C3-BED5F4817EC9}">TcEventSeverity</Type>
+          <BitSize>16</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>EqualsToEventEntryEx</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>stOther</Name>
+          <Type GUID="{F00C83AD-DEC8-486E-AE99-5E0A75C26DE0}">TcEventEntry</Type>
+          <BitSize>192</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>GetJsonAttribute</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>sJsonAttribute</Name>
+          <Type ReferenceTo="true">STRING(80)</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>nJsonAttribute</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>RequestEventClassName</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nLangId</Name>
+          <Comment> English(US)=1033 ; German(Germay)=1031</Comment>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>sResult</Name>
+          <Comment> buffer for result text</Comment>
+          <Type ReferenceTo="true">STRING(80)</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>nResultSize</Name>
+          <Comment> size of buffer in bytes</Comment>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>bError</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>Output</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+        <Parameter>
+          <Name>hrErrorCode</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>Output</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>RequestEventText</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nLangId</Name>
+          <Comment> English(US)=1033 ; German(Germay)=1031</Comment>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>sResult</Name>
+          <Comment> buffer for result text</Comment>
+          <Type ReferenceTo="true">STRING(80)</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>nResultSize</Name>
+          <Comment> size of buffer in bytes</Comment>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>bError</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>Output</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+        <Parameter>
+          <Name>hrErrorCode</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>Output</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name>IQueryInterface</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name RpcEnable="plc" VTableIndex="1">__GetInterfacePointer</Name>
+        <ReturnType RpcDirection="out">BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>pRef</Name>
+          <Type PointerTo="2" RpcDirection="in">DWORD</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc" VTableIndex="2">__GetInterfaceReference</Name>
+        <ReturnType RpcDirection="out">BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nInterfaceId</Name>
+          <Type RpcDirection="in">DINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>pRef</Name>
+          <Type PointerTo="2" RpcDirection="in">DWORD</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name GUID="{939C2FD3-7468-4E5B-AA5D-A64A143B36A8}" TcBaseType="true" CName="TcEventArgumentType">TcEventArgumentType</Name>
@@ -1730,6 +2076,282 @@
       <Name Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</Name>
       <BitSize>32</BitSize>
       <ExtendsType>IQueryInterface</ExtendsType>
+      <Method>
+        <Name RpcEnable="plc">__getipData</Name>
+        <ReturnType GUID="{BFC9A87A-F6DE-499A-AC45-F3B1A59315F9}" RpcDirection="out">ITcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>conditionalshow</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>AddBlob</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>pData</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000018}">PVOID</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>cbData</Name>
+          <Type>UINT</Type>
+          <BitSize>16</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddBool</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddByte</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>BYTE</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddDInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddDWord</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>DWORD</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddEventReferenceEx</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>stEventEntry</Name>
+          <Type GUID="{F00C83AD-DEC8-486E-AE99-5E0A75C26DE0}">TcEventEntry</Type>
+          <BitSize>192</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddEventReferenceId</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>nEventId</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddEventReferenceIdGuid</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>nEventId</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>EventClass</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+          <BitSize>128</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddLInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>LINT</Type>
+          <BitSize>64</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddLReal</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>LREAL</Type>
+          <BitSize>64</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddReal</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>REAL</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddSInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>SINT</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddString</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type ReferenceTo="true">STRING(80)</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>InOut</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddStringByValue</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddUDInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddUInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>UINT</Type>
+          <BitSize>16</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddULInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>ULINT</Type>
+          <BitSize>64</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddUSInt</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>USINT</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddUtf8EncodedString</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type ReferenceTo="true">STRING(80)</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>InOut</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddWord</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>WORD</Type>
+          <BitSize>16</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddWString</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type ReferenceTo="true">WSTRING(80)</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>InOut</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>AddWStringByValue</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>value</Name>
+          <Type>WSTRING(255)</Type>
+          <BitSize>4096</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>Clear</Name>
+        <ReturnType Namespace="LCLS_General.Tc3_EventLogger">I_TcArguments</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="LCLS_General.Tc3_EventLogger">FB_TcSourceInfo</Name>
@@ -2542,6 +3164,16 @@
       <Name Namespace="LCLS_General.Tc3_EventLogger">I_TcMessage</Name>
       <BitSize>32</BitSize>
       <ExtendsType Namespace="LCLS_General.Tc3_EventLogger">I_TcEventBase</ExtendsType>
+      <Method>
+        <Name>Send</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>nTimeStamp</Name>
+          <Type>ULINT</Type>
+          <BitSize>64</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name GUID="{6474ED2C-E483-454E-A67D-233E6D337C08}" TcBaseType="true" CName="ITcMessage*">ITcMessage</Name>
@@ -4107,6 +4739,16 @@
       <Name Namespace="TcUnit">I_TestResults</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>GetAreTestResultsAvailable</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+      </Method>
+      <Method>
+        <Name>GetTestSuiteResults</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">ST_TestSuiteResults</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+      </Method>
     </DataType>
     <DataType>
       <Name>UINT (UINT#1..GVL_Param_TcUnit.MaxNumberOfTestSuites)</Name>
@@ -4179,6 +4821,9 @@
       <Name Namespace="TcUnit">I_TestResultLogger</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>LogTestSuiteResults</Name>
+      </Method>
     </DataType>
     <DataType>
       <Name>UINT (UINT#1..GVL_Param_TcUnit.MaxNumberOfTestsForEachTestSuite)</Name>
@@ -7252,6 +7897,29 @@
       <Name Namespace="TcUnit">I_AssertMessageFormatter</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>LogAssertFailure</Name>
+        <Parameter>
+          <Name>Expected</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>Actual</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>Message</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>TestInstancePath</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="TcUnit">FB_AdjustAssertFailureMessageToMax253CharLength</Name>
@@ -7609,11 +8277,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertEquals_BOOL</Name>
@@ -7746,11 +8409,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -7910,11 +8568,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>CalculateAndSetNumberOfAssertsForTest</Name>
@@ -8049,11 +8702,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -8212,11 +8860,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -8722,11 +9365,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -9502,11 +10140,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertEquals_TIME</Name>
@@ -9885,11 +10518,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertArrayEquals_INT</Name>
@@ -9981,11 +10609,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -10113,11 +10736,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertArrayEquals_LWORD</Name>
@@ -10219,11 +10837,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -10538,11 +11151,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AreAllTestsFinished</Name>
@@ -10712,11 +11320,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -10901,11 +11504,6 @@
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertArrayEquals_LREAL</Name>
@@ -11003,11 +11601,6 @@
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -13236,6 +13829,16 @@ These features aren't disabled, they just aren't used, think child/parent classe
       <Name Namespace="LCLS_Vacuum.PMPS.TcUnit">I_TestResults</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>GetAreTestResultsAvailable</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+      </Method>
+      <Method>
+        <Name>GetTestSuiteResults</Name>
+        <ReturnType Namespace="LCLS_Vacuum.PMPS.TcUnit" ReferenceTo="true">ST_TestSuiteResults</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="LCLS_Vacuum.PMPS.TcUnit">FB_TestResults</Name>
@@ -13301,6 +13904,9 @@ These features aren't disabled, they just aren't used, think child/parent classe
       <Name Namespace="LCLS_Vacuum.PMPS.TcUnit">I_TestResultLogger</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>LogTestSuiteResults</Name>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="LCLS_Vacuum.PMPS.TcUnit">FB_AdsTestResultLogger</Name>
@@ -15526,6 +16132,29 @@ These features aren't disabled, they just aren't used, think child/parent classe
       <Name Namespace="LCLS_Vacuum.PMPS.TcUnit">I_AssertMessageFormatter</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>LogAssertFailure</Name>
+        <Parameter>
+          <Name>Expected</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>Actual</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>Message</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>TestInstancePath</Name>
+          <Type Namespace="Tc2_System">T_MaxString</Type>
+          <BitSize>2048</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="LCLS_Vacuum.PMPS.TcUnit">FB_AdjustAssertFailureMessageToMax253CharLength</Name>
@@ -15938,11 +16567,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>FindTestSuiteInstancePath</Name>
@@ -16201,11 +16825,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertArrayEquals_BYTE</Name>
@@ -16307,11 +16926,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -16471,11 +17085,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertEquals_LTIME</Name>
@@ -16598,11 +17207,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -16744,11 +17348,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -17510,11 +18109,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>SetHasStartedRunning</Name>
@@ -17675,11 +18269,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>GetHasStartedRunning</Name>
@@ -17782,11 +18371,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -17941,11 +18525,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertEquals_DINT</Name>
@@ -18068,11 +18647,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -18248,11 +18822,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -18535,11 +19104,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -19336,11 +19900,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
-        <Local>
-          <Name>__Index__0</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
       </Method>
       <Method>
         <Name>AssertArrayEquals_UDINT</Name>
@@ -19432,11 +19991,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Local>
         <Local>
           <Name>ActualsIndex</Name>
-          <Type>DINT</Type>
-          <BitSize>32</BitSize>
-        </Local>
-        <Local>
-          <Name>__Index__0</Name>
           <Type>DINT</Type>
           <BitSize>32</BitSize>
         </Local>
@@ -21840,6 +22394,46 @@ These features aren't disabled, they just aren't used, think child/parent classe
       <Name Namespace="LCLS_General.Tc3_EventLogger">I_Listener</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>OnAlarmCleared</Name>
+        <Parameter>
+          <Name>fbEvent</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger" ReferenceTo="true">FB_TcEvent</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>OnAlarmConfirmed</Name>
+        <Parameter>
+          <Name>fbEvent</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger" ReferenceTo="true">FB_TcEvent</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>OnAlarmDisposed</Name>
+        <Parameter>
+          <Name>fbEvent</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger" ReferenceTo="true">FB_TcEvent</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>OnAlarmRaised</Name>
+        <Parameter>
+          <Name>fbEvent</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger" ReferenceTo="true">FB_TcEvent</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>OnMessageSent</Name>
+        <Parameter>
+          <Name>fbEvent</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger" ReferenceTo="true">FB_TcEvent</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name GUID="{70904B1B-F00E-4FCB-BE59-151086E9B8F6}" CName="ITcEventFilterConfig*">ITcEventFilterConfig</Name>
@@ -31727,11 +32321,69 @@ be up-to-date and valid within `tTimeout` seconds.
       <Name Namespace="PMPS">I_HigherAuthority</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name>CheckRequest</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nReqID</Name>
+          <Type>DWORD</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>RemoveRequest</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nReqID</Name>
+          <Comment>StateID to remove</Comment>
+          <Type>DWORD</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>RequestBP</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nReqID</Name>
+          <Comment>StateID of state requesting beam parameter set</Comment>
+          <Type>DWORD</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>stReqBP</Name>
+          <Comment>Requested beam params</Comment>
+          <Type Namespace="PMPS">ST_BeamParams</Type>
+          <BitSize>1696</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="PMPS">I_LowerAuthority</Name>
       <BitSize>32</BitSize>
       <ExtendsType GUID="{18071995-0000-0000-0000-000000000018}">PVOID</ExtendsType>
+      <Method>
+        <Name RpcEnable="plc" VTableIndex="1">__getnLowerAuthorityID</Name>
+        <ReturnType RpcDirection="out">DWORD</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>ElevateRequest</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>HigherAuthority</Name>
+          <Type Namespace="PMPS">I_HigherAuthority</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
     </DataType>
     <DataType>
       <Name Namespace="PMPS">T_HashTableEntry</Name>
@@ -40589,6 +41241,44 @@ This function provides ILK and Set Point Protection for the Cold Cathode</Commen
       </SubItem>
     </DataType>
     <DataType>
+      <Name GUID="{97CF8247-B59C-4E2C-B4B0-7350D0471457}">LCLSGeneralEventClass</Name>
+      <DisplayName TxtId="">Log event</DisplayName>
+      <EventId>
+        <Name Id="0">Critical</Name>
+        <DisplayName TxtId="">Critical</DisplayName>
+        <Severity>Critical</Severity>
+      </EventId>
+      <EventId>
+        <Name Id="1">Error</Name>
+        <DisplayName TxtId="">Error</DisplayName>
+        <Severity>Error</Severity>
+      </EventId>
+      <EventId>
+        <Name Id="2">Warning</Name>
+        <DisplayName TxtId="">Warning</DisplayName>
+        <Severity>Warning</Severity>
+      </EventId>
+      <EventId>
+        <Name Id="3">Info</Name>
+        <DisplayName TxtId="">Info</DisplayName>
+        <Severity>Info</Severity>
+      </EventId>
+      <EventId>
+        <Name Id="4">Verbose</Name>
+        <DisplayName TxtId="">Verbose</DisplayName>
+        <Severity>Verbose</Severity>
+      </EventId>
+      <Hides>
+        <Hide GUID="{E50B8F82-4C54-4F5A-855E-90970D01354A}"/>
+        <Hide GUID="{772B0B6F-412E-46FD-9006-6E00BFFE1C3D}"/>
+        <Hide GUID="{8FAD87A4-C885-4A4F-85AF-8AB324945AE2}"/>
+        <Hide GUID="{16BEE339-E307-4BC2-8E77-D5FB1794DF5A}"/>
+        <Hide GUID="{B7E60A74-CB5C-4A02-B59C-74B86A888DE9}"/>
+        <Hide GUID="{6B58EF80-AB34-4F6C-81D0-B0589F4FC534}"/>
+        <Hide GUID="{9E76D1D7-D744-4E3D-B111-F6F94B60E6AB}"/>
+      </Hides>
+    </DataType>
+    <DataType>
       <Name GUID="{11F7FC20-DBF4-4DAF-96C7-1FD6B6156B31}" TcBaseType="true" CName="TcSystemEventClass">TcSystemEventClass</Name>
       <DisplayName TxtId="">TcSystemEventClass</DisplayName>
       <EventId>
@@ -41394,44 +42084,6 @@ This function provides ILK and Set Point Protection for the Cold Cathode</Commen
         <Hide GUID="{3FEAA938-D042-4B1E-8ADD-BB2F7BE872B0}"/>
       </Hides>
     </DataType>
-    <DataType>
-      <Name GUID="{97CF8247-B59C-4E2C-B4B0-7350D0471457}">LCLSGeneralEventClass</Name>
-      <DisplayName TxtId="">Log event</DisplayName>
-      <EventId>
-        <Name Id="0">Critical</Name>
-        <DisplayName TxtId="">Critical</DisplayName>
-        <Severity>Critical</Severity>
-      </EventId>
-      <EventId>
-        <Name Id="1">Error</Name>
-        <DisplayName TxtId="">Error</DisplayName>
-        <Severity>Error</Severity>
-      </EventId>
-      <EventId>
-        <Name Id="2">Warning</Name>
-        <DisplayName TxtId="">Warning</DisplayName>
-        <Severity>Warning</Severity>
-      </EventId>
-      <EventId>
-        <Name Id="3">Info</Name>
-        <DisplayName TxtId="">Info</DisplayName>
-        <Severity>Info</Severity>
-      </EventId>
-      <EventId>
-        <Name Id="4">Verbose</Name>
-        <DisplayName TxtId="">Verbose</DisplayName>
-        <Severity>Verbose</Severity>
-      </EventId>
-      <Hides>
-        <Hide GUID="{E50B8F82-4C54-4F5A-855E-90970D01354A}"/>
-        <Hide GUID="{772B0B6F-412E-46FD-9006-6E00BFFE1C3D}"/>
-        <Hide GUID="{8FAD87A4-C885-4A4F-85AF-8AB324945AE2}"/>
-        <Hide GUID="{16BEE339-E307-4BC2-8E77-D5FB1794DF5A}"/>
-        <Hide GUID="{B7E60A74-CB5C-4A02-B59C-74B86A888DE9}"/>
-        <Hide GUID="{6B58EF80-AB34-4F6C-81D0-B0589F4FC534}"/>
-        <Hide GUID="{9E76D1D7-D744-4E3D-B111-F6F94B60E6AB}"/>
-      </Hides>
-    </DataType>
   </DataTypes>
   <Modules>
     <Module GUID="{97BEB12C-531D-448A-BE72-706714BB6964}" TcSmClass="TComPlcObjDef">
@@ -41865,7 +42517,7 @@ This function provides ILK and Set Point Protection for the Cold Cathode</Commen
           <AreaNo AreaType="InputDst" CreateSymbols="true">0</AreaNo>
           <Name>ComTask Inputs</Name>
           <ContextId>0</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>GVL_COM.PTM_stComIn</Name>
             <Comment>SERIAL IO //EL6021_00_05</Comment>
@@ -41914,7 +42566,7 @@ This function provides ILK and Set Point Protection for the Cold Cathode</Commen
           <AreaNo AreaType="OutputSrc" CreateSymbols="true">1</AreaNo>
           <Name>ComTask Outputs</Name>
           <ContextId>0</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>GVL_COM.PTM_stComOut</Name>
             <BitSize>192</BitSize>
@@ -41962,7 +42614,7 @@ This function provides ILK and Set Point Protection for the Cold Cathode</Commen
           <AreaNo AreaType="Internal" CreateSymbols="true">3</AreaNo>
           <Name>ComTask Internal</Name>
           <ContextId>0</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>GVL_COM.PTM_SerialRXBuffer</Name>
             <Comment> Define COM Ports/Buffers incl. library Tc2_SerialCom
@@ -42067,7 +42719,7 @@ LXLHN_PTM_01</Comment>
           <AreaNo AreaType="InputDst" CreateSymbols="true">16</AreaNo>
           <Name>PlcTask Inputs</Name>
           <ContextId>1</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>LCLS_General.DefaultGlobals.stSys.I_EcatMaster1</Name>
             <Comment> AMS Net ID used for FB_EcatDiag, among others </Comment>
@@ -44112,7 +44764,7 @@ LXLHN_PTM_01</Comment>
           <AreaNo AreaType="OutputSrc" CreateSymbols="true">17</AreaNo>
           <Name>PlcTask Outputs</Name>
           <ContextId>1</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>GVL_BTS_VAC.g_FFOut.q_xFastFaultOut</Name>
             <BitSize>8</BitSize>
@@ -44997,7 +45649,7 @@ LXLHN_PTM_01</Comment>
           <AreaNo AreaType="Internal" CreateSymbols="true">19</AreaNo>
           <Name>PlcTask Internal</Name>
           <ContextId>1</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>DefaultGlobals.stSys</Name>
             <Comment>Included for you</Comment>
@@ -55145,7 +55797,8 @@ LXLHN_PTM_01</Comment>
               </Property>
               <Property>
                 <Name>TcLinkTo</Name>
-                <Value>.i_xOpnLS			:=	TIIB[EL1004_03_17]^Channel 1^Input;
+                <Value>.q_xOPN_DO			:=	TIIB[EL2004_02_15]^Channel 2^Output;
+								 .i_xOpnLS			:=	TIIB[EL1004_03_17]^Channel 1^Input;
                                  .i_xClsLS			:=	TIIB[EL1004_03_17]^Channel 2^Input</Value>
               </Property>
               <Property>
@@ -56967,6 +57620,29 @@ LXLHN_PTM_01</Comment>
             <BitOffs>970352960</BitOffs>
           </Symbol>
           <Symbol>
+            <Name>TC_EVENTS.LCLSGeneralEventClass</Name>
+            <Comment> ST_LCLSGeneralEventClass</Comment>
+            <BitSize>960</BitSize>
+            <BaseType GUID="{97CF8247-B59C-4E2C-B4B0-7350D0471457}">ST_LCLSGeneralEventClass</BaseType>
+            <Properties>
+              <Property>
+                <Name>tc_no_symbol</Name>
+                <Value>unused</Value>
+              </Property>
+              <Property>
+                <Name>const_non_replaced</Name>
+              </Property>
+              <Property>
+                <Name>suppress_warning_0</Name>
+                <Value>C0228</Value>
+              </Property>
+              <Property>
+                <Name>TcVarGlobal</Name>
+              </Property>
+            </Properties>
+            <BitOffs>970396288</BitOffs>
+          </Symbol>
+          <Symbol>
             <Name>TC_EVENT_CLASSES.TcSystemEventClass</Name>
             <Comment> 11F7FC20-DBF4-4DAF-96C7-1FD6B6156B31</Comment>
             <BitSize>128</BitSize>
@@ -57033,7 +57709,7 @@ LXLHN_PTM_01</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>970366336</BitOffs>
+            <BitOffs>970405312</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TC_EVENT_CLASSES.TcGeneralAdsEventClass</Name>
@@ -57102,7 +57778,7 @@ LXLHN_PTM_01</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>970366464</BitOffs>
+            <BitOffs>970405440</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TC_EVENT_CLASSES.TcRouterEventClass</Name>
@@ -57171,7 +57847,7 @@ LXLHN_PTM_01</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>970366592</BitOffs>
+            <BitOffs>970405568</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TC_EVENT_CLASSES.TcRTimeEventClass</Name>
@@ -57240,7 +57916,7 @@ LXLHN_PTM_01</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>970366720</BitOffs>
+            <BitOffs>970405696</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TC_EVENT_CLASSES.Win32EventClass</Name>
@@ -57309,7 +57985,7 @@ LXLHN_PTM_01</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>970366848</BitOffs>
+            <BitOffs>970405824</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TC_EVENT_CLASSES.LCLSGeneralEventClass</Name>
@@ -57378,37 +58054,26 @@ LXLHN_PTM_01</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>970366976</BitOffs>
+            <BitOffs>970405952</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>TC_EVENTS.LCLSGeneralEventClass</Name>
-            <Comment> ST_LCLSGeneralEventClass</Comment>
-            <BitSize>960</BitSize>
-            <BaseType GUID="{97CF8247-B59C-4E2C-B4B0-7350D0471457}">ST_LCLSGeneralEventClass</BaseType>
-            <Properties>
-              <Property>
-                <Name>tc_no_symbol</Name>
-                <Value>unused</Value>
-              </Property>
-              <Property>
-                <Name>const_non_replaced</Name>
-              </Property>
-              <Property>
-                <Name>suppress_warning_0</Name>
-                <Value>C0228</Value>
-              </Property>
-              <Property>
-                <Name>TcVarGlobal</Name>
-              </Property>
-            </Properties>
-            <BitOffs>970397312</BitOffs>
+            <Name>PRG_VALVES.xPumpRunning</Name>
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <BitOffs>976071504</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>PRG_VALVES.xValveOKToOpen</Name>
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <BitOffs>976071512</BitOffs>
           </Symbol>
         </DataArea>
         <DataArea>
           <AreaNo AreaType="RetainSrc" CreateSymbols="true">20</AreaNo>
           <Name>PlcTask Retains</Name>
           <ContextId>1</ContextId>
-          <ByteSize>122159104</ByteSize>
+          <ByteSize>122290176</ByteSize>
           <Symbol>
             <Name>PMPS_GVL.SuccessfulPreemption</Name>
             <Comment> Any time BPTM applies a new BP request which is confirmed</Comment>
@@ -57452,6 +58117,9 @@ LXLHN_PTM_01</Comment>
       <Deployment/>
       <EventClasses>
         <EventClass>
+          <Type GUID="{97CF8247-B59C-4E2C-B4B0-7350D0471457}">LCLSGeneralEventClass</Type>
+        </EventClass>
+        <EventClass>
           <Type GUID="{11F7FC20-DBF4-4DAF-96C7-1FD6B6156B31}">TcSystemEventClass</Type>
         </EventClass>
         <EventClass>
@@ -57466,9 +58134,6 @@ LXLHN_PTM_01</Comment>
         <EventClass>
           <Type GUID="{1D0C4BAC-ECF3-4F33-8F20-A12E77AB6387}">Win32EventClass</Type>
         </EventClass>
-        <EventClass>
-          <Type GUID="{97CF8247-B59C-4E2C-B4B0-7350D0471457}">LCLSGeneralEventClass</Type>
-        </EventClass>
       </EventClasses>
       <Properties>
         <Property>
@@ -57477,7 +58142,7 @@ LXLHN_PTM_01</Comment>
         </Property>
         <Property>
           <Name>ChangeDate</Name>
-          <Value>2024-08-08T13:47:04</Value>
+          <Value>2025-08-08T10:14:33</Value>
         </Property>
         <Property>
           <Name>GeneratedCodeSize</Name>
