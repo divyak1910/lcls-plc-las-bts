@@ -16,6 +16,11 @@
     <Implicit_KindOfTask>{d4b28104-7aa1-42c8-b124-7cda70f6fa1a}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{7225cb5a-52ec-4177-820f-37b49d7f0da3}</Implicit_Jitter_Distribution>
     <LibraryReferences>{dd36624e-f227-401d-9f04-428fdb350b4b}</LibraryReferences>
+    <CombineIds>false</CombineIds>
+    <Company>SLAC</Company>
+    <Released>true</Released>
+    <Title>lcls-plc-las-bts</Title>
+    <ProjectVersion>1.0.0</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ComTask.TcTTO">
