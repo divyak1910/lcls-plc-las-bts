@@ -3,9 +3,7 @@
   <POU Name="PRG_VALVES" Id="{ba00eb5d-cf41-4398-aa63-3ea5e5b61133}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_VALVES
 VAR
-    Valve_opn_ok : BOOL;
-    xPumpRunning: BOOL;
-    xValveOKToOpen: BOOL;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
